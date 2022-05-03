@@ -1,0 +1,253 @@
+/* COLORS */
+$bg-color: #796465;
+$countdown-timer-bg-color: #d7b29d;
+$break-session-bg-color: #e8d2ae;
+
+.App,
+body {
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	background-color: $bg-color;
+}
+* {
+	box-sizing: border-box;
+	font-family: 'Ubuntu Mono', monospace;
+	font-style: italic;
+}
+
+header {
+	display: flex;
+	justify-content: center;
+	color: $break-session-bg-color;
+	font-weight: bold;
+	font-size: 1.6vw;
+	text-shadow: 0px 7px 4px rgba(0, 0, 0, 0.4);
+}
+
+.break-session > div {
+	background-color: $break-session-bg-color;
+	color: $bg-color;
+	box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
+}
+
+.btn-arrows,
+.btn-play-stop-reset {
+	background-color: $break-session-bg-color;
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+/********************************** BreakSession component ***********************/
+#break-label,
+#session-label {
+	grid-area: breakLabel;
+}
+.div-arrow-down {
+	grid-area: arrowDown;
+}
+.div-arrow-up {
+	grid-area: arrowUp;
+}
+#break-length,
+#session-length {
+	grid-area: breakLength;
+}
+
+.break-session {
+	display: grid;
+	grid-template-areas:
+		'breakLabel breakLabel'
+		'arrowDown arrowUp'
+		'breakLength breakLength';
+	row-gap: 8px;
+	column-gap: 17px;
+	width: 8.5625em;
+}
+
+.arrows {
+	width: 3.75em;
+	height: 176px;
+}
+
+.label-length {
+	// align text in the middle.
+	width: 8.5625rem;
+	height: 56px;
+	font-weight: bold;
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/**************** Timer, play/pause and reset buttons. ****************/
+#start_stop {
+	grid-area: startStop;
+}
+#reset {
+	grid-area: resetBtn;
+}
+.count-down-timer {
+	grid-area: countDownTimer;
+}
+.play-stop-reset {
+	grid-area: playStopReset;
+}
+
+.play-timer {
+	display: grid;
+	grid-template-areas:
+		'playStopReset playStopReset'
+		'countDownTimer countDownTimer';
+	width: 19.9375em;
+	row-gap: 8px;
+	column-gap: 17px;
+
+	.count-down-timer {
+		width: 19.9375em;
+		height: 240px;
+		background-color: $countdown-timer-bg-color;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+		row-gap: 23%;
+		font-weight: bold;
+
+		#time-left {
+			width: 50%;
+			height: 65px;
+			font-size: 45px;
+			border-radius: 5px;
+			background-color: $bg-color;
+			color: $countdown-timer-bg-color;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+			align-items: center;
+		}
+
+		#timer-label {
+			color: $bg-color;
+			font-size: 35px;
+		}
+	}
+
+	#start_stop,
+	#reset {
+		background-color: $break-session-bg-color;
+		width: 9.375em;
+		height: 56px;
+	}
+}
+
+.play-stop-reset {
+	display: grid;
+	grid-template-areas: 'startStop resetBtn';
+	width: 19.9375em;
+	gap: 19px;
+}
+
+// Apply box-shadow around all boxes.
+.count-down-timer,
+.play-stop-reset > div,
+#time-left {
+	box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
+}
+
+/******************************** APP ************************************/
+.app-break {
+	grid-area: appBreak;
+}
+.app-session {
+	grid-area: appSession;
+}
+.play-timer {
+	grid-area: playTimer;
+}
+
+.break-session-timer {
+	justify-content: center;
+	display: grid;
+	grid-template-areas: 'appBreak playTimer appSession';
+	column-gap: 17px;
+}
+
+/************** FontAwesome icon styles *******************/
+.font-awesome-icon {
+	color: #796465;
+	font-size: x-large;
+	filter: drop-shadow(7px 7px 5px rgba(0, 0, 0, 0.5));
+}
+
+button:hover {
+	cursor: pointer;
+	border: none;
+	border-radius: 1.5px;
+	outline: 1px solid white;
+	.font-awesome-icon {
+		color: white;
+	}
+}
+
+#footer {
+	width: 18.0625em;
+	margin: 10px auto;
+	text-align: center;
+	font-size: 20px;
+	color: $break-session-bg-color;
+}
+
+/****** small devices*******/
+@media only screen and (max-width: 672px) {
+	.break-session-timer {
+		justify-content: center;
+		display: grid;
+		grid-template-areas:
+			'playTimer playTimer'
+			'appBreak appSession';
+		gap: 15px;
+	}
+
+	.app-break,
+	.app-session {
+		margin: 0px auto;
+	}
+
+	.play-timer,
+	.play-stop-reset {
+		width: 18.0625em;
+		gap: 15px;
+
+		.count-down-timer {
+			width: 18.0625em;
+			height: 180px;
+		}
+
+		#start_stop,
+		#reset {
+			width: 8.5625em;
+			height: 50px;
+		}
+	}
+
+	.arrows {
+		height: 75px;
+	}
+
+	.label-length {
+		height: 50px;
+	}
+
+	#footer {
+		width: 13em;
+	}
+
+	header {
+		font-size: 12.5px;
+		margin-top: 12px;
+	}
+}
